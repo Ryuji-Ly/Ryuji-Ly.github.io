@@ -26,6 +26,28 @@ body header a:hover {
 body main {
   background-color: #111;
   height: 100vh;
+  padding: 50px 0 0;
+  color: #fff;
+}
+body main h1 {
+  text-align: center;
+}
+body main #content {
+  background-color: #101;
+  margin: 0 50px;
+  width: 20vw;
+  border: 2px solid #a1ffff;
+  border-radius: 5px;
+}
+body main #content h3 {
+  margin: 15px;
+}
+body main #content ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+body main #content ul li a:hover {
+  color: #bbb;
 }
 body footer {
   text-align: center;

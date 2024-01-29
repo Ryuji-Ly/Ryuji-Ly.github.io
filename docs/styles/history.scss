@@ -25,6 +25,32 @@ body {
     main {
         background-color: $backgroundColor;
         height: 100vh;
+        padding: 50px 0 0;
+        color: #fff;
+        h1{
+            text-align: center;
+        }
+        #content{
+            background-color: #101;
+            margin: 0 50px;
+            width: 20vw;
+            border: 2px solid #a1ffff;
+            border-radius: 5px;
+            h3{
+                margin: 15px;
+            }
+            ul{
+                li{
+                    a{
+                        color: #fff;
+                        text-decoration: none;
+                        &:hover{
+                            color: #bbb;
+                        }
+                    }
+                }
+            }
+        }
     }
     footer {
         text-align: center;
