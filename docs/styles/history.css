@@ -49,6 +49,18 @@ body main #content ul li a {
 body main #content ul li a:hover {
   color: #bbb;
 }
+@media screen and (max-width: 1000px) {
+  body main #content {
+    width: 40vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  body main #content {
+    width: 80vw;
+    box-sizing: border-box;
+    margin: auto;
+  }
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
