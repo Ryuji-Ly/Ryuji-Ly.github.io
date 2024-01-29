@@ -4,13 +4,16 @@ body {
     display: flex;
     flex-direction: column;
     header {
-        text-align: center;
         padding: 20px;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.2);
         backdrop-filter: blur(10px);
         a {
+            padding: 10px;
             color: #fff;
             text-decoration: none;
+            &:hover{
+                color: #bbb;
+            }
         }
         position: absolute;
         width: 100%;
@@ -32,6 +35,7 @@ body {
                 align-items: center;
                 justify-content: center;
                 height: 100%;
+                animation: glowAndColorChange 10s infinite cubic-bezier(0.4, 0.01, 0.165, 0.99);
             }
         }
         #summary{
@@ -39,13 +43,30 @@ body {
             h2{
                 text-align: center;
             }
+            p{
+                margin: auto 50px 50px;
+            }
         }
     }
     footer {
         text-align: center;
-        padding: 20px;
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(10px);
         margin-top: auto;
+    }
+}
+
+@keyframes glowAndColorChange {
+    0%, 100% {
+        color: #eee;
+        text-shadow: 0 0 10px #eee, 0 0 20px #eee, 0 0 30px #eee;
+    }
+    20%, 80% {
+        color: #ffd700; /* Blue */
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700;
+    }
+    40%, 60% {
+        color: #af6bf2;
+        text-shadow: 0 0 10px #af6bf2, 0 0 20px #af6bf2, 0 0 30px #af6bf2;
     }
 }
