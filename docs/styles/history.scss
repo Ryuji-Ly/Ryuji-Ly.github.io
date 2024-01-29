@@ -1,0 +1,35 @@
+@import "global";
+body {
+    margin: 0;
+    font-size: $fontSize;
+    display: flex;
+    flex-direction: column;
+    header {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        a {
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            &:hover{
+                color: #bbb;
+            }
+        }
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+        padding: 10px 0;
+        margin: auto 0;
+    }
+    main {
+        background-color: $backgroundColor;
+        height: 100vh;
+    }
+    footer {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        margin-top: auto;
+    }
+}

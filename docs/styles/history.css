@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-size: 2.5ch;
+  display: flex;
+  flex-direction: column;
+}
+body header {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  padding: 10px 0;
+  margin: auto 0;
+}
+body header a {
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+body header a:hover {
+  color: #bbb;
+}
+body main {
+  background-color: #111;
+  height: 100vh;
+}
+body footer {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  margin-top: auto;
+}/*# sourceMappingURL=history.css.map */

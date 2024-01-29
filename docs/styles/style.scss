@@ -1,6 +1,7 @@
+@import "globals";
 body {
     margin: 0;
-    font-size: 2.5ch;
+    font-size: $fontSize;
     display: flex;
     flex-direction: column;
     header {
@@ -22,7 +23,7 @@ body {
         margin: auto 0;
     }
     main {
-        background-color: #111;
+        background-color: $backgroundColor;
         #title-screen {
             text-align: center;
             background: url("../assets/images/outer-space-background.jpg") center/cover no-repeat;
