@@ -26,7 +26,10 @@ body header a:hover {
 body main {
   background-color: #111;
   padding: 50px 0 0;
+  display: block;
+  box-sizing: border-box;
   color: #fff;
+  min-height: 100vh;
 }
 body main h1 {
   text-align: center;
@@ -80,4 +83,4 @@ body footer {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   margin-top: auto;
-}/*# sourceMappingURL=history.css.map */
+}/*# sourceMappingURL=general.css.map */
