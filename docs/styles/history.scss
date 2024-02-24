@@ -24,7 +24,6 @@ body {
     }
     main {
         background-color: $backgroundColor;
-        height: 100vh;
         padding: 50px 0 0;
         color: #fff;
         h1{
@@ -32,11 +31,11 @@ body {
         }
         #content{
             background-color: #101;
-            margin: 0 50px;
+            margin: 0 25px;
             width: 20vw;
             border: 2px solid #a1ffff;
-            border-radius: 5px;
-            h3{
+            border-radius: 15px;
+            h2{
                 margin: 15px;
             }
             ul{
@@ -57,6 +56,20 @@ body {
                 width: 80vw;
                 box-sizing: border-box;
                 margin: auto;
+            }
+        }
+        h2{
+            text-align: center;
+        }
+        h3{
+            text-align: center;
+        }
+        article{
+            margin: 25px;
+            border: 1px solid #bbb;
+            border-radius: 15px;
+            section{
+                margin: 25px
             }
         }
     }

@@ -25,7 +25,6 @@ body header a:hover {
 }
 body main {
   background-color: #111;
-  height: 100vh;
   padding: 50px 0 0;
   color: #fff;
 }
@@ -34,12 +33,12 @@ body main h1 {
 }
 body main #content {
   background-color: #101;
-  margin: 0 50px;
+  margin: 0 25px;
   width: 20vw;
   border: 2px solid #a1ffff;
-  border-radius: 5px;
+  border-radius: 15px;
 }
-body main #content h3 {
+body main #content h2 {
   margin: 15px;
 }
 body main #content ul li a {
@@ -60,6 +59,20 @@ body main #content ul li a:hover {
     box-sizing: border-box;
     margin: auto;
   }
+}
+body main h2 {
+  text-align: center;
+}
+body main h3 {
+  text-align: center;
+}
+body main article {
+  margin: 25px;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+}
+body main article section {
+  margin: 25px;
 }
 body footer {
   text-align: center;
