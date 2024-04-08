@@ -31,6 +31,26 @@ body main {
   color: #fff;
   min-height: 100vh;
 }
+body main h1 {
+  text-align: center;
+}
+body main a {
+  color: #7e43ff;
+  text-decoration: none;
+}
+body main a:hover {
+  text-decoration: underline;
+}
+body main #content {
+  display: flex;
+  justify-content: space-around;
+}
+body main #content div {
+  width: 40%;
+  border: 1px solid #7e43ff;
+  border-radius: 10px;
+  padding: 1em;
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);

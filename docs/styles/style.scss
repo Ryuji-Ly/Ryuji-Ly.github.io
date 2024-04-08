@@ -1,5 +1,4 @@
 @import "global";
-@import "global";
 body {
     margin: 0;
     font-size: $fontSize;
@@ -30,6 +29,26 @@ body {
         box-sizing: border-box;
         color: #fff;
         min-height: 100vh;
+        h1{
+            text-align: center;        
+        }
+        a{
+            color: #7e43ff;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        #content{
+            display: flex;
+            justify-content: space-around;
+            div{
+                width: 40%;
+                border: 1px solid #7e43ff;
+                border-radius: 10px;
+                padding: 1em;
+            }
+        }
     }
     footer {
         text-align: center;
