@@ -180,7 +180,7 @@ document.addEventListener("keyup", (event) => {
     keys[event.code] = false;
 });
 function gameLoop() {
-    backgroundMusic.play();
+    backgroundMusic.onpause = backgroundMusic.play();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(backgroundFrames[currentFrameIndex], 0, 0, frameWidth, frameHeight);
     if (gameState === GameStates.START_MENU || gameState === GameStates.PLAYING) {
