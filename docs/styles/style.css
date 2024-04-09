@@ -42,14 +42,33 @@ body main a:hover {
   text-decoration: underline;
 }
 body main #content {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 body main #content div {
-  width: 40%;
+  grid-column: span 1;
+  justify-self: center;
+  width: 80%;
+  justify-content: center;
   border: 1px solid #7e43ff;
   border-radius: 10px;
   padding: 1em;
+  margin: 20px 0;
+}
+body main #content #extra {
+  width: 90%;
+  grid-column: span 2;
+}
+@media screen and (max-width: 700px) {
+  body main #content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main #content div {
+    width: 90%;
+  }
 }
 body main #gameContainer {
   display: flex;
