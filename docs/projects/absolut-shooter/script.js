@@ -158,6 +158,7 @@ image.src = "./assets/images/sprites/cristiano-ronaldo.png";
 const suiii = new Audio("./assets/sounds/SUIII.mp3");
 let suiiiPlayed = false;
 const backgroundMusic = new Audio("./assets/music/starwars.mp3");
+backgroundMusic.loop = true;
 canvas.addEventListener("click", (event) => {
     if (gameState === GameStates.START_MENU) {
         const rect = canvas.getBoundingClientRect();
