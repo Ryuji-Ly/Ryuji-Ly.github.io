@@ -3,11 +3,18 @@ import pygame
 import sys
 import time
 import random
-from sounds import play_sound
+
+
+def play_sound(file_path, repeat, channel):
+    pygame.mixer.init()
+    pygame.mixer.set_num_channels(100)
+    pygame.mixer.Channel(channel).play(
+        pygame.mixer.Sound(file_path), loops=repeat)
+
 
 # Initialize Pygame
 pygame.init()
-play_sound("assets/music/starwars.mp3", -1, 0)
+play_sound("./assets/music/starwars.mp3", -1, 0)
 
 # Constants
 WIDTH, HEIGHT = 1000, 800
@@ -16,40 +23,40 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BOSS_SPAWN = 100
 BACKGROUND = pygame.transform.scale(pygame.image.load(
-    "assets/images/backgrounds/game_bg.gif"), (WIDTH, HEIGHT))
+    "./assets/images/backgrounds/game_bg.gif"), (WIDTH, HEIGHT))
 FRAMES = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_00.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_00.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_01.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_01.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_02.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_02.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_03.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_03.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_04.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_04.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_05.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_05.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_06.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_06.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_07.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_07.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_08.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_08.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_09.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_09.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_10.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_10.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_11.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_11.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_12.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_12.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_13.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_13.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_14.gif"), (WIDTH, HEIGHT)),
+        "./assets/images/backgrounds/frames/frame_14.gif"), (WIDTH, HEIGHT)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/backgrounds/frames/frame_15.gif"), (WIDTH, HEIGHT))
+        "./assets/images/backgrounds/frames/frame_15.gif"), (WIDTH, HEIGHT))
 ]
 # Game states
 START_MENU = 0
@@ -73,75 +80,75 @@ pause_start_time = 0
 elapsed_time = 0
 player_speed = 5
 boss_images = [
-    pygame.image.load("assets/images/sprites/boss.png").convert_alpha(),
-    pygame.image.load("assets/images/sprites/boss2.png").convert_alpha(),
-    pygame.image.load("assets/images/sprites/boss3.png").convert_alpha()
+    pygame.image.load("./assets/images/sprites/boss1.png").convert_alpha(),
+    pygame.image.load("./assets/images/sprites/boss2.png").convert_alpha(),
+    pygame.image.load("./assets/images/sprites/boss3.png").convert_alpha()
 ]
 enemy_img = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/enemy1.png").convert_alpha(), (40, 60)),
+        "./assets/images/sprites/enemy1.png").convert_alpha(), (40, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/enemy2.png").convert_alpha(), (40, 60)),
+        "./assets/images/sprites/enemy2.png").convert_alpha(), (40, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/enemy3.png").convert_alpha(), (40, 60)),
+        "./assets/images/sprites/enemy3.png").convert_alpha(), (40, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/enemy4.png").convert_alpha(), (40, 60))
+        "./assets/images/sprites/enemy4.png").convert_alpha(), (40, 60))
 ]
 bullet_img = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/bullets/bean.png").convert_alpha(), (15, 19)),
+        "./assets/images/sprites/bullets/bean.png").convert_alpha(), (15, 19)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/bullets/plasma.png").convert_alpha(), (15, 19))
+        "./assets/images/sprites/bullets/plasma.png").convert_alpha(), (15, 19))
 ]
 explosion_img = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/1.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/1.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/2.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/2.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/3.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/3.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/4.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/4.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/5.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/5.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/6.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/6.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/7.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/7.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/8.png").convert_alpha(), (60, 60)),
+        "./assets/images/sprites/explosion/8.png").convert_alpha(), (60, 60)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/9.png").convert_alpha(), (60, 60))
+        "./assets/images/sprites/explosion/9.png").convert_alpha(), (60, 60))
 ]
 explosion_img2 = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/1.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/1.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/2.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/2.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/3.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/3.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/4.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/4.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/5.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/5.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/6.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/6.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/7.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/7.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/8.png").convert_alpha(), (400, 400)),
+        "./assets/images/sprites/explosion/8.png").convert_alpha(), (400, 400)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/explosion/9.png").convert_alpha(), (400, 400))
+        "./assets/images/sprites/explosion/9.png").convert_alpha(), (400, 400))
 ]
 laser_img = [
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/laser/frame_0.gif").convert_alpha(), (40, HEIGHT+200)),
+        "./assets/images/sprites/laser/frame_0.gif").convert_alpha(), (40, HEIGHT+200)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/laser/frame_1.gif").convert_alpha(), (40, HEIGHT+200)),
+        "./assets/images/sprites/laser/frame_1.gif").convert_alpha(), (40, HEIGHT+200)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/laser/frame_2.gif").convert_alpha(), (40, HEIGHT+200)),
+        "./assets/images/sprites/laser/frame_2.gif").convert_alpha(), (40, HEIGHT+200)),
     pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/laser/frame_3.gif").convert_alpha(), (40, HEIGHT+200)),
+        "./assets/images/sprites/laser/frame_3.gif").convert_alpha(), (40, HEIGHT+200)),
 ]
 frame = 0
 laser_frame = 0
@@ -157,7 +164,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(
-            "assets/images/sprites/spaceship.png").convert_alpha(), (40, 60))
+            "./assets/images/sprites/spaceship.png").convert_alpha(), (40, 60))
         self.rect = self.image.get_rect()
         self.speed = player_speed
         self.rect.center = (WIDTH // 2, HEIGHT)
@@ -216,7 +223,7 @@ class Player(pygame.sprite.Sprite):
                     self.score += 1
                     explosion = Explosion(
                         enemy.rect.centerx, enemy.rect.centery, 0)
-                    play_sound("assets/sounds/explosions/2.ogg",
+                    play_sound("./assets/sounds/explosions/2.ogg",
                                0, round(random.randint(2, 7)))
                     all_sprites.add(explosion)
                     enemy.kill()
@@ -226,11 +233,11 @@ class Player(pygame.sprite.Sprite):
         for player_list, enemy_list in player_enemy_collisions.items():
             for enemy in enemy_list:
                 player_list.health -= enemy.health
-                play_sound("assets/sounds/shots/laser.ogg", 0, 1)
+                play_sound("./assets/sounds/shots/laser.ogg", 0, 1)
                 self.score += 1
                 explosion = Explosion(enemy.rect.centerx,
                                       enemy.rect.centery, 0)
-                play_sound("assets/sounds/explosions/2.ogg",
+                play_sound("./assets/sounds/explosions/2.ogg",
                            0, round(random.randint(2, 7)))
                 all_sprites.add(explosion)
                 enemy.kill()
@@ -243,7 +250,7 @@ class Player(pygame.sprite.Sprite):
             player_group, mines, True, True)
         for player_list, mine_list in player_mine_collisions.items():
             for mine in mine_list:
-                play_sound("assets/sounds/explosions/1.ogg", 0, 1)
+                play_sound("./assets/sounds/explosions/1.ogg", 0, 1)
                 mine.kill()
                 player.health = 0
                 game_state = GAME_OVER
@@ -272,7 +279,7 @@ class Player(pygame.sprite.Sprite):
                     explosion = Explosion(
                         boss.rect.centerx, boss.rect.centery, 1)
                     all_sprites.add(explosion)
-                    play_sound("assets/sounds/explosions/3.ogg", 0, 1)
+                    play_sound("./assets/sounds/explosions/3.ogg", 0, 1)
                     boss.kill()
         # Checks for player colliding with boss
         player_boss_collisions = pygame.sprite.groupcollide(
@@ -289,7 +296,7 @@ class Player(pygame.sprite.Sprite):
                 self.score += 1
                 explosion = Explosion(enemy.rect.centerx,
                                       enemy.rect.centery, 0)
-                play_sound("assets/sounds/explosions/2.ogg",
+                play_sound("./assets/sounds/explosions/2.ogg",
                            0, round(random.randint(2, 7)))
                 all_sprites.add(explosion)
                 enemy.kill()
@@ -309,7 +316,7 @@ class Player(pygame.sprite.Sprite):
                         explosion = Explosion(
                             boss.rect.centerx, boss.rect.centery, 1)
                         all_sprites.add(explosion)
-                        play_sound("assets/sounds/explosions/3.ogg", 0, 1)
+                        play_sound("./assets/sounds/explosions/3.ogg", 0, 1)
                         boss.kill()
             else:
                 self.laser_current += 1
@@ -335,7 +342,8 @@ class Player(pygame.sprite.Sprite):
         self.shoot_timer = self.shoot_delay
 
     def shoot_laser(self):
-        play_sound("assets/sounds/SUIII.mp3", 0, round(random.randint(7, 99)))
+        play_sound("./assets/sounds/SUIII.mp3", 0,
+                   round(random.randint(7, 99)))
         if len(self.laser) <= 1:
             new_laser = Laser(self.rect.centerx, self.rect.top)
             all_sprites.add(new_laser)
@@ -371,7 +379,7 @@ class Mine(pygame.sprite.Sprite):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(
-            "assets/images/sprites/mine.png").convert_alpha(), (40, 40))
+            "./assets/images/sprites/mine.png").convert_alpha(), (40, 40))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.health = 1
@@ -409,7 +417,7 @@ class Health_Packet(pygame.sprite.Sprite):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(
-            "assets/images/sprites/health.png").convert_alpha(), (40, 40))
+            "./assets/images/sprites/health.png").convert_alpha(), (40, 40))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.health = 2
@@ -470,7 +478,7 @@ class Boss(pygame.sprite.Sprite):
         if self.shoot_timer > 0:
             self.shoot_timer -= 1
         if self.shoot_timer == 0:
-            play_sound("assets/sounds/shots/bullet.ogg", 0, 1)
+            play_sound("./assets/sounds/shots/bullet.ogg", 0, 1)
             self.shoot_bullet()
         # Checks for boss bullets collisions with player
         bullets_player_collisions = pygame.sprite.groupcollide(
@@ -478,7 +486,7 @@ class Boss(pygame.sprite.Sprite):
         for bullet, player_list in bullets_player_collisions.items():
             bullet.kill()
             player.health -= 1
-            play_sound("assets/sounds/shots/laser.ogg", 0, 1)
+            play_sound("./assets/sounds/shots/laser.ogg", 0, 1)
             if player.health <= 0:
                 player.health = 0
                 game_state = GAME_OVER
@@ -596,7 +604,7 @@ def start_menu():
         frame = 0
         screen.blit(FRAMES[frame], (0, 0))
     start_message = pygame.transform.scale(pygame.image.load(
-        "assets/images/sprites/cristiano-ronaldo.png"), (300, 600))
+        "./assets/images/sprites/cristiano-ronaldo.png"), (300, 600))
     screen.blit(start_message, (WIDTH // 2 -
                 start_message.get_width() // 2, HEIGHT // 2-300))
     start_button = pygame.Rect(WIDTH // 2 - 75, HEIGHT // 2 - 55, 150, 50)
@@ -718,7 +726,7 @@ while True:
                     start_time = time.time()
                     game_state = PLAYING
 
-                    play_sound("assets/sounds/SUIII.mp3", 0, 1)
+                    play_sound("./assets/sounds/SUIII.mp3", 0, 1)
                 if quit_button.collidepoint(mouse_x, mouse_y):
                     pygame.quit()
                     sys.exit()
@@ -741,7 +749,7 @@ while True:
                     elapsed_time = 0
                     player_speed = 5
                     game_state = PLAYING
-                    play_sound("assets/sounds/SUIII.mp3", 0, 1)
+                    play_sound("./assets/sounds/SUIII.mp3", 0, 1)
                     for sprite in all_sprites:
                         sprite.kill()
                     player.__init__()
@@ -774,7 +782,7 @@ while True:
                     elapsed_time = 0
                     player_speed = 5
                     game_state = PLAYING
-                    play_sound("assets/sounds/SUIII.mp3", 0, 1)
+                    play_sound("./assets/sounds/SUIII.mp3", 0, 1)
                     for sprite in all_sprites:
                         sprite.kill()
                     player.__init__()
@@ -825,7 +833,7 @@ while True:
                 elapsed_time = 0
                 player_speed = 5
                 game_state = PLAYING
-                play_sound("assets/sounds/SUIII.mp3", 0, 1)
+                play_sound("./assets/sounds/SUIII.mp3", 0, 1)
                 for sprite in all_sprites:
                     sprite.kill()
                 player.__init__()
