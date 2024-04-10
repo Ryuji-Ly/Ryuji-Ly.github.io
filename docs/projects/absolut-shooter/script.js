@@ -6,9 +6,11 @@ const GameStates = {
 };
 const bossSpawn = 100;
 let gameState = GameStates.START_MENU;
-let score = 0;
-let wave = 0;
+let startTime = 0;
 let elapsedTime = 0;
+let score = 0;
+let bossesSlain = 0;
+let wave = bossesSlain + 1;
 let enemies = [];
 let bullets = [];
 let explosions = [];
@@ -68,6 +70,8 @@ const backgroundFramesPath = [
 
 class Player {
     constructor(x, y, width, height, speed, bulletSpeed, bulletFrequency) {
+        this.health = 5;
+        this.maxHealth = 5;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -133,7 +137,7 @@ class Bullet {
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const player = new Player(canvas.width / 2 - 25, canvas.height - 60, 40, 60, 5, 8, 6);
+let player;
 let keys = {};
 let frameCount = 0;
 let currentFrameIndex = 0;
@@ -159,32 +163,27 @@ const suiii = new Audio("./assets/sounds/SUIII.mp3");
 let suiiiPlayed = false;
 const backgroundMusic = new Audio("./assets/music/starwars.mp3");
 backgroundMusic.loop = true;
-canvas.addEventListener("click", (event) => {
-    if (gameState === GameStates.START_MENU) {
-        const rect = canvas.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const clickY = event.clientY - rect.top;
-        if (
-            clickX >= buttonX &&
-            clickX <= buttonX + buttonWidth &&
-            clickY >= buttonY &&
-            clickY <= buttonY + buttonHeight
-        ) {
-            gameState = GameStates.PLAYING;
-        }
-    }
-});
-document.addEventListener("keydown", (event) => {
-    keys[event.code] = true;
-});
-document.addEventListener("keyup", (event) => {
-    keys[event.code] = false;
-});
+
+function startGame() {
+    gameState = GameStates.PLAYING;
+    startTime = Date.now();
+    score = 0;
+    player = new Player(canvas.width / 2 - 25, canvas.height - 60, 40, 60, 5, 8, 6);
+}
+
 function gameLoop() {
     backgroundMusic.onpause = backgroundMusic.play();
+    if (gameState === GameStates.PLAYING) {
+        elapsedTime = (Date.now() - startTime) / 1000;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(backgroundFrames[currentFrameIndex], 0, 0, frameWidth, frameHeight);
-    if (gameState === GameStates.START_MENU || gameState === GameStates.PLAYING) {
+    if (
+        gameState === GameStates.START_MENU ||
+        gameState === GameStates.PLAYING ||
+        gameState === GameStates.PAUSED ||
+        gameState === GameStates.GAME_OVER
+    ) {
         const currentFrameIndex = Math.floor(Date.now() / 100) % backgroundFrames.length;
         ctx.drawImage(backgroundFrames[currentFrameIndex], 0, 0, canvas.width, canvas.height);
     }
@@ -194,7 +193,8 @@ function gameLoop() {
         ctx.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
         ctx.fillStyle = "black";
         ctx.font = "30px Algerian";
-        ctx.fillText("Start", buttonX + 30, buttonY + 35);
+        ctx.textAlign = "center";
+        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 10);
     }
     if (gameState === GameStates.PLAYING) {
         player.update();
@@ -206,6 +206,32 @@ function gameLoop() {
                 player.bullets.splice(index, 1);
             }
         });
+        ctx.fillStyle = "white";
+        ctx.font = "30px Algerian";
+        ctx.textAlign = "left";
+        ctx.fillText(`Time: ${Math.floor(elapsedTime)}s`, 10, 30);
+        ctx.fillText(`Wave: ${wave}`, 10, 60);
+        ctx.textAlign = "center";
+        ctx.fillText(`Score: ${score}`, canvas.width / 2, 30);
+        ctx.textAlign = "right";
+        ctx.fillText(`Health: ${player.health}`, canvas.width - 10, 30);
+    }
+    if (gameState === GameStates.PAUSED) {
+        ctx.fillStyle = "white";
+        ctx.font = "30px Algerian";
+        ctx.textAlign = "center";
+        ctx.fillText("Paused", canvas.width / 2, canvas.height / 2 - 30);
+        ctx.fillStyle = "skyblue";
+        ctx.fillRect(canvas.width / 2 - 75, canvas.height / 2 - 25, buttonWidth, buttonHeight);
+        ctx.fillRect(canvas.width / 2 - 75, canvas.height / 2 + 30, buttonWidth, buttonHeight);
+        ctx.fillRect(canvas.width / 2 - 75, canvas.height / 2 + 85, buttonWidth, buttonHeight);
+        ctx.fillStyle = "black";
+        ctx.fillText("Resume", canvas.width / 2, canvas.height / 2 + 10);
+        ctx.fillText("Restart", canvas.width / 2, canvas.height / 2 + 65);
+        ctx.fillText("Home", canvas.width / 2, canvas.height / 2 + 120);
+    }
+    if (gameState === GameStates.GAME_OVER) {
+        // handle elapsed time when game over
     }
     frameCount++;
     currentFrameIndex++;
@@ -214,5 +240,66 @@ function gameLoop() {
     }
     requestAnimationFrame(gameLoop);
 }
+
+canvas.addEventListener("click", (event) => {
+    if (gameState === GameStates.START_MENU) {
+        const rect = canvas.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const clickY = event.clientY - rect.top;
+        if (
+            clickX >= buttonX &&
+            clickX <= buttonX + buttonWidth &&
+            clickY >= buttonY &&
+            clickY <= buttonY + buttonHeight
+        ) {
+            startGame();
+        }
+    } else if ((gameState = GameStates.PAUSED)) {
+        const rect = canvas.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const clickY = event.clientY - rect.top;
+        if (
+            clickX >= canvas.width / 2 - 75 &&
+            clickX <= canvas.width / 2 - 75 + buttonWidth &&
+            clickY >= canvas.height / 2 - 25 &&
+            clickY <= canvas.height / 2 - 25 + buttonHeight
+        ) {
+            gameState = GameStates.PLAYING;
+        }
+        if (
+            clickX >= canvas.width / 2 - 75 &&
+            clickX <= canvas.width / 2 - 75 + buttonWidth &&
+            clickY >= canvas.height / 2 + 30 &&
+            clickY <= canvas.height / 2 + 30 + buttonHeight
+        ) {
+            startGame();
+        }
+        if (
+            clickX >= canvas.width / 2 - 75 &&
+            clickX <= canvas.width / 2 - 75 + buttonWidth &&
+            clickY >= canvas.height / 2 + 85 &&
+            clickY <= canvas.height / 2 + 85 + buttonHeight
+        ) {
+            gameState = GameStates.START_MENU;
+            suiii.play();
+        }
+    }
+});
+document.addEventListener("keydown", (event) => {
+    keys[event.code] = true;
+});
+document.addEventListener("keyup", (event) => {
+    keys[event.code] = false;
+});
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        if (gameState === GameStates.PLAYING) {
+            gameState = GameStates.PAUSED;
+        } else if (gameState === GameStates.PAUSED) {
+            gameState = GameStates.PLAYING;
+        }
+    }
+});
+
 suiii.play();
 gameLoop();
