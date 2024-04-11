@@ -101,7 +101,7 @@ class GameOfLife {
 function startGame() {
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
-    const marginPercentage = 0.05;
+    const marginPercentage = 0.07;
     const gridSize = parseInt(document.getElementById("gridSize").value);
     const seed = document.getElementById("seed").value;
     const availableWidth = window.innerWidth * (1 - marginPercentage * 2);

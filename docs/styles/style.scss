@@ -81,15 +81,45 @@ body {
             canvas {
                 border: 1px solid #7e43ff;
                 border-radius: 5px;
+                margin: 10px;
             }
         }
         #absolut{
             display: flex;
             flex-direction: column;
             align-items: center;
+            h1{
+                margin: 0;
+                padding: 0;
+            }
             canvas {
                 border: 1px solid #7e43ff;
                 border-radius: 5px;
+                margin: 10px 0;
+            }
+            @media screen and (max-height: 900px){
+                canvas{
+                    width: 1000px;
+                    height: 800px;
+                }
+            }
+            @media screen and (max-height: 800px){
+                h1{
+                    font-size: 1.5em;
+                }
+                canvas{
+                    width: 800px;
+                    height: 640px;
+                }
+            }
+            @media screen and (max-height: 700px){
+                h1{
+                    font-size: 1.2em;
+                }
+                canvas{
+                    width: 600px;
+                    height: 480px;
+                }
             }
         }
     }
