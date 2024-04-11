@@ -6,6 +6,7 @@ const GameStates = {
 };
 const bossSpawn = 100;
 let gameState = GameStates.START_MENU;
+let pausedImage = null;
 let startTime = 0;
 let elapsedTime = 0;
 let score = 0;
@@ -141,6 +142,8 @@ let player;
 let keys = {};
 let frameCount = 0;
 let currentFrameIndex = 0;
+let totalPauseTime = 0;
+let lastFrameTime = 0;
 const frameWidth = canvas.width;
 const frameHeight = canvas.height;
 const backgroundFrames = [];
@@ -168,13 +171,16 @@ function startGame() {
     gameState = GameStates.PLAYING;
     startTime = Date.now();
     score = 0;
+    totalPauseTime = 0;
     player = new Player(canvas.width / 2 - 25, canvas.height - 60, 40, 60, 5, 8, 6);
 }
 
 function gameLoop() {
+    const deltaTime = Date.now() - lastFrameTime;
+    lastFrameTime = Date.now();
     backgroundMusic.onpause = backgroundMusic.play();
     if (gameState === GameStates.PLAYING) {
-        elapsedTime = (Date.now() - startTime) / 1000;
+        elapsedTime = (Date.now() - startTime - totalPauseTime) / 1000;
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(backgroundFrames[currentFrameIndex], 0, 0, frameWidth, frameHeight);
@@ -217,6 +223,8 @@ function gameLoop() {
         ctx.fillText(`Health: ${player.health}`, canvas.width - 10, 30);
     }
     if (gameState === GameStates.PAUSED) {
+        totalPauseTime += deltaTime;
+        ctx.putImageData(pausedImage, 0, 0);
         ctx.fillStyle = "white";
         ctx.font = "30px Algerian";
         ctx.textAlign = "center";
@@ -254,7 +262,7 @@ canvas.addEventListener("click", (event) => {
         ) {
             startGame();
         }
-    } else if ((gameState = GameStates.PAUSED)) {
+    } else if (gameState === GameStates.PAUSED) {
         const rect = canvas.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
         const clickY = event.clientY - rect.top;
@@ -287,18 +295,17 @@ canvas.addEventListener("click", (event) => {
 });
 document.addEventListener("keydown", (event) => {
     keys[event.code] = true;
-});
-document.addEventListener("keyup", (event) => {
-    keys[event.code] = false;
-});
-document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         if (gameState === GameStates.PLAYING) {
+            pausedImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
             gameState = GameStates.PAUSED;
         } else if (gameState === GameStates.PAUSED) {
             gameState = GameStates.PLAYING;
         }
     }
+});
+document.addEventListener("keyup", (event) => {
+    keys[event.code] = false;
 });
 
 suiii.play();
