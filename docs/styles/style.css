@@ -23,6 +23,39 @@ body header a {
 body header a:hover {
   color: #bbb;
 }
+body #tictactoe-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body #tictactoe-main div button {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7e43ff;
+  color: #fff;
+  cursor: pointer;
+}
+body #tictactoe-main div button:hover {
+  background-color: #6b38cc;
+}
+body #tictactoe-main #tictactoe-game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+}
+body #tictactoe-main #tictactoe-game-board .cell {
+  width: 100px;
+  height: 100px;
+  color: #000;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
 body main {
   background-color: #111;
   padding: 50px 0 0;
