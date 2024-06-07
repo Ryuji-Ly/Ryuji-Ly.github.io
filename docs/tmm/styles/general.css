@@ -34,6 +34,32 @@ body main {
 body main h1 {
   text-align: center;
 }
+body main #characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body main #characters div {
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px;
+  width: 20vw;
+  background-color: rgba(74, 1, 84, 0.1529411765);
+}
+body main #characters div h2 {
+  text-align: center;
+}
+body main #characters div ul {
+  list-style: none;
+}
+body main #characters div ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+body main #characters div ul li a:hover {
+  color: #bbb;
+}
 body main #content {
   background-color: #101;
   margin: 0 25px;

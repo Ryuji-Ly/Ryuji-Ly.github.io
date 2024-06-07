@@ -173,6 +173,7 @@ function startGame() {
     score = 0;
     totalPauseTime = 0;
     player = new Player(canvas.width / 2 - 25, canvas.height - 60, 40, 60, 5, 8, 6);
+    console.log("Game started");
 }
 
 function gameLoop() {

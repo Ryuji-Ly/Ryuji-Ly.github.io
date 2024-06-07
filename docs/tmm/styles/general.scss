@@ -32,6 +32,34 @@ body {
         h1{
             text-align: center;
         }
+        #characters{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            div{      
+                border: 1px solid #bbb;
+                border-radius: 15px;
+                padding: 25px;
+                margin: 25px;
+                width: 20vw;
+                background-color: #4a015427;
+                h2{
+                    text-align: center;
+                }
+                ul{
+                    list-style: none;
+                    li{
+                        a{
+                            color: #fff;
+                            text-decoration: none;
+                            &:hover{
+                                color: #bbb;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         #content{
             background-color: #101;
             margin: 0 25px;
