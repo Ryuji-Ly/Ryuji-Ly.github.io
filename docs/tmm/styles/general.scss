@@ -1,4 +1,7 @@
 @import "global";
+html{
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
     font-size: $fontSize;
@@ -61,10 +64,9 @@ body {
             }
         }
         #content{
-            background-color: #101;
-            margin: 0 25px;
-            width: 20vw;
-            border: 2px solid #a1ffff;
+            background-color: #4a015427;
+            width: 50vw;
+            border: 2px solid #bbb;
             border-radius: 15px;
             h2{
                 margin: 15px;
@@ -81,7 +83,7 @@ body {
                 }
             }
             @media screen and (max-width: 1000px){
-                width: 40vw;
+                width: 60vw;
             }
             @media screen and (max-width: 500px){
                 width: 80vw;

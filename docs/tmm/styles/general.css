@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-size: 2.5ch;
@@ -61,10 +65,9 @@ body main #characters div ul li a:hover {
   color: #bbb;
 }
 body main #content {
-  background-color: #101;
-  margin: 0 25px;
-  width: 20vw;
-  border: 2px solid #a1ffff;
+  background-color: rgba(74, 1, 84, 0.1529411765);
+  width: 50vw;
+  border: 2px solid #bbb;
   border-radius: 15px;
 }
 body main #content h2 {
@@ -79,7 +82,7 @@ body main #content ul li a:hover {
 }
 @media screen and (max-width: 1000px) {
   body main #content {
-    width: 40vw;
+    width: 60vw;
   }
 }
 @media screen and (max-width: 500px) {
