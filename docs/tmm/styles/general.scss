@@ -51,6 +51,7 @@ body {
                 }
                 ul{
                     list-style: none;
+                    padding: 0 15px;
                     li{
                         a{
                             color: #fff;
@@ -103,6 +104,26 @@ body {
             border-radius: 15px;
             section{
                 margin: 25px
+            }
+        }
+        #box{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            h2{
+                text-align: center;
+                padding: 20px;
+            }
+            ul{
+                padding: 0;
+                list-style: none;
+                li{
+                    padding: 0 20px;
+                }
+            }
+            img{
+                border-radius: 15px;
+                padding: 10px;
             }
         }
     }

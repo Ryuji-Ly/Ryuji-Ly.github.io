@@ -56,6 +56,7 @@ body main #characters div h2 {
 }
 body main #characters div ul {
   list-style: none;
+  padding: 0 15px;
 }
 body main #characters div ul li a {
   color: #fff;
@@ -105,6 +106,26 @@ body main article {
 }
 body main article section {
   margin: 25px;
+}
+body main #box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+body main #box h2 {
+  text-align: center;
+  padding: 20px;
+}
+body main #box ul {
+  padding: 0;
+  list-style: none;
+}
+body main #box ul li {
+  padding: 0 20px;
+}
+body main #box img {
+  border-radius: 15px;
+  padding: 10px;
 }
 body footer {
   text-align: center;
