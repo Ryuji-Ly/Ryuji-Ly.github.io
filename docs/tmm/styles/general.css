@@ -127,6 +127,12 @@ body main #box img {
   border-radius: 15px;
   padding: 10px;
 }
+body main #box #summary {
+  width: 50vw;
+}
+body main #box #summary p {
+  padding: 0 10px;
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
