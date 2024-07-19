@@ -129,6 +129,14 @@ body {
                 width: 50vw;
                 p{
                     padding: 0 10px;
+                    a{
+                        color: #fff;
+                        text-decoration: none;
+                        &:hover{
+                            color: #bbb;
+                        }
+                    
+                    }
                 }
             }
         }

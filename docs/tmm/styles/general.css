@@ -133,6 +133,13 @@ body main #box #summary {
 body main #box #summary p {
   padding: 0 10px;
 }
+body main #box #summary p a {
+  color: #fff;
+  text-decoration: none;
+}
+body main #box #summary p a:hover {
+  color: #bbb;
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
