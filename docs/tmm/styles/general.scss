@@ -140,6 +140,33 @@ body {
                 }
             }
         }
+        #general-info{
+            margin: 25px;
+            padding: 0 25px;
+            border: 1px solid #bbb;
+            border-radius: 15px;
+        }
+    }
+    #general-info-main{
+        ul{
+            margin: 25px;
+            list-style: none;
+            border: 1px solid #bbb;
+            border-radius: 15px;
+            width: 50vw;
+            padding: 10px 5px;
+            li{
+                padding: 5px 10px;
+                a{
+                    padding: 0 20px;
+                    color: #fff;
+                    text-decoration: none;
+                    &:hover{
+                        color: #bbb;
+                    }
+                }
+            }
+        }
     }
     footer {
         text-align: center;

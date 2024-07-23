@@ -140,6 +140,31 @@ body main #box #summary p a {
 body main #box #summary p a:hover {
   color: #bbb;
 }
+body main #general-info {
+  margin: 25px;
+  padding: 0 25px;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+}
+body #general-info-main ul {
+  margin: 25px;
+  list-style: none;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  width: 50vw;
+  padding: 10px 5px;
+}
+body #general-info-main ul li {
+  padding: 5px 10px;
+}
+body #general-info-main ul li a {
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;
+}
+body #general-info-main ul li a:hover {
+  color: #bbb;
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
