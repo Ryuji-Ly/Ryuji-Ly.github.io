@@ -146,6 +146,15 @@ body main #general-info {
   border: 1px solid #bbb;
   border-radius: 15px;
 }
+body main #container p {
+  padding: 0 25px;
+}
+body main #container img {
+  border-radius: 15px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+}
 body #general-info-main ul {
   margin: 25px;
   list-style: none;

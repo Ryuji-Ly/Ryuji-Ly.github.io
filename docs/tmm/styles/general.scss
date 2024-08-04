@@ -146,6 +146,17 @@ body {
             border: 1px solid #bbb;
             border-radius: 15px;
         }
+        #container{
+            p{
+                padding: 0 25px;
+            }
+            img{
+                border-radius: 15px;
+                padding: 10px;
+                display: block;
+                margin: 0 auto;
+            }
+        }
     }
     #general-info-main{
         ul{
