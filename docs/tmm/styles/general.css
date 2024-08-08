@@ -155,6 +155,9 @@ body main #container img {
   display: block;
   margin: 0 auto;
 }
+body main #container #locked {
+  display: none;
+}
 body #general-info-main ul {
   margin: 25px;
   list-style: none;
