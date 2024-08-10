@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origin Shift Maze Generator</title>
+    <link rel="icon" href="../../assets/images/ly.png">
+    <link rel="stylesheet" href="../../styles/style.css">
+    <script src="./script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../../">Main</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Origin Shift Maze Generator</h1>
+        <div id="maze-generator">
+            <div id="controls">
+                <label for="mazeWidth">Width:</label>
+                <input type="number" id="mazeWidth" value="10" min="1">
+                <label for="mazeHeight">Height:</label>
+                <input type="number" id="mazeHeight" value="10" min="1">
+                <button id="generateButton">Generate Maze</button>
+                <button id="startButton">Start</button>
+                <button id="stopButton" disabled>Stop</button>
+            </div>
+            
+            <div id="mazeContainer"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Ryuji Ly</p>
+    </footer>
+</body>
+</html>

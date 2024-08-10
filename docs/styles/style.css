@@ -160,6 +160,64 @@ body main #absolut canvas {
     height: 480px;
   }
 }
+body main #maze-generator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main #maze-generator #mazeContainer {
+  color: #000;
+  display: grid;
+  grid-gap: 0;
+  margin: 20px;
+}
+body main #maze-generator #mazeContainer .cell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: relative;
+  border: 5px solid #333;
+}
+body main #maze-generator #mazeContainer .cell.no-top {
+  border-top: none;
+}
+body main #maze-generator #mazeContainer .cell.no-right {
+  border-right: none;
+}
+body main #maze-generator #mazeContainer .cell.no-bottom {
+  border-bottom: none;
+}
+body main #maze-generator #mazeContainer .cell.no-left {
+  border-left: none;
+}
+body main #maze-generator #mazeContainer .cell.origin {
+  background-color: #b95fb9;
+}
+body main #maze-generator #mazeContainer .corner {
+  width: 5px;
+  height: 5px;
+  background-color: #333;
+  position: absolute;
+  z-index: 5;
+}
+body main #maze-generator #mazeContainer .top-left {
+  top: 0;
+  left: 0;
+}
+body main #maze-generator #mazeContainer .top-right {
+  top: 0;
+  right: 0;
+}
+body main #maze-generator #mazeContainer .bottom-left {
+  bottom: 0;
+  left: 0;
+}
+body main #maze-generator #mazeContainer .bottom-right {
+  bottom: 0;
+  right: 0;
+}
 body footer {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);

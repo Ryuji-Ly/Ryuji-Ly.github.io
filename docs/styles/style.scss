@@ -161,6 +161,61 @@ body {
                 }
             }
         }
+        #maze-generator{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            #mazeContainer{
+                color: #000;
+                display: grid;
+                grid-gap: 0;
+                margin: 20px;
+                .cell {
+                    width: 30px;
+                    height: 30px;
+                    box-sizing: border-box;
+                    background-color: #fff;
+                    position: relative;
+                    border: 5px solid #333;
+                }
+                
+                .cell.no-top { border-top: none; }
+                .cell.no-right { border-right: none; }
+                .cell.no-bottom { border-bottom: none; }
+                .cell.no-left { border-left: none; }
+                .cell.origin {
+                    background-color: #b95fb9;
+                }
+                .corner {
+                    width: 5px;
+                    height: 5px;
+                    background-color: #333;
+                    position: absolute;
+                    z-index: 5;
+                }
+                .top-left {
+                    top: 0;
+                    left: 0;
+                }
+                
+                .top-right {
+                    top: 0;
+                    right: 0;
+                }
+                
+                .bottom-left {
+                    bottom: 0;
+                    left: 0;
+                }
+                
+                .bottom-right {
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+        }
+
     }
     footer {
         text-align: center;
