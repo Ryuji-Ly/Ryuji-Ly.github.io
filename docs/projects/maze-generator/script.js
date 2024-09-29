@@ -79,8 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
         grid[originNode.y][originNode.x].element.classList.add("origin");
 
         // Redraw the walls
-        redrawWalls();
-        addCorners();
+        readdWallsAroundOrigin();
+        updateWallsAroundOrigin();
+        updateCornersAroundOrigin();
     }
 
     function addCorners() {
@@ -136,6 +137,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function updateCornersAroundOrigin() {
+        // Define the range around the origin node (5x5 grid around the origin)
+        const startX = Math.max(0, originNode.x - 2);
+        const endX = Math.min(mazeWidth - 1, originNode.x + 2);
+        const startY = Math.max(0, originNode.y - 2);
+        const endY = Math.min(mazeHeight - 1, originNode.y + 2);
+
+        // Loop through the 5x5 grid around the origin
+        for (let y = startY; y <= endY; y++) {
+            for (let x = startX; x <= endX; x++) {
+                const cell = grid[y][x];
+                const element = cell.element;
+
+                // Determine whether walls are present
+                const hasTop = element.classList.contains("no-top");
+                const hasRight = element.classList.contains("no-right");
+                const hasBottom = element.classList.contains("no-bottom");
+                const hasLeft = element.classList.contains("no-left");
+
+                // Remove all corners initially to clean up any unwanted ones
+                removeCorner(element, "top-left");
+                removeCorner(element, "top-right");
+                removeCorner(element, "bottom-left");
+                removeCorner(element, "bottom-right");
+
+                // Add corners based on current wall configuration
+                if (hasTop && hasLeft) {
+                    addCorner(cell, "top-left");
+                }
+                if (hasTop && hasRight) {
+                    addCorner(cell, "top-right");
+                }
+                if (hasBottom && hasLeft) {
+                    addCorner(cell, "bottom-left");
+                }
+                if (hasBottom && hasRight) {
+                    addCorner(cell, "bottom-right");
+                }
+            }
+        }
+    }
+
     function addCorner(cell, position) {
         // Ensure the corner isn't already added
         if (!cell.element.querySelector(`.corner.${position}`)) {
@@ -151,6 +194,47 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function readdWallsAroundOrigin() {
+        const startX = Math.max(0, originNode.x - 1);
+        const endX = Math.min(mazeWidth - 1, originNode.x + 1);
+        const startY = Math.max(0, originNode.y - 1);
+        const endY = Math.min(mazeHeight - 1, originNode.y + 1);
+
+        // Loop through the 3x3 grid around the origin
+        for (let y = startY; y <= endY; y++) {
+            for (let x = startX; x <= endX; x++) {
+                const cell = grid[y][x];
+                cell.element.classList.remove("no-top", "no-right", "no-bottom", "no-left");
+            }
+        }
+    }
+
+    function updateWallsAroundOrigin() {
+        const startX = Math.max(0, originNode.x - 2);
+        const endX = Math.min(mazeWidth - 1, originNode.x + 2);
+        const startY = Math.max(0, originNode.y - 2);
+        const endY = Math.min(mazeHeight - 1, originNode.y + 2);
+        for (let y = startY; y <= endY; y++) {
+            for (let x = startX; x <= endX; x++) {
+                const cell = grid[y][x];
+                const { direction } = cell;
+                if (direction && direction !== directions.nowhere) {
+                    cell.element.classList.add(direction.class);
+                    const neighborX = x + direction.x;
+                    const neighborY = y + direction.y;
+                    if (
+                        neighborX >= 0 &&
+                        neighborX < mazeWidth &&
+                        neighborY >= 0 &&
+                        neighborY < mazeHeight
+                    ) {
+                        grid[neighborY][neighborX].element.classList.add(direction.opposite);
+                    }
+                }
+            }
+        }
+    }
+
     function redrawWalls() {
         for (let y = 0; y < mazeHeight; y++) {
             for (let x = 0; x < mazeWidth; x++) {
@@ -158,8 +242,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 cell.element.classList.remove("no-top", "no-right", "no-bottom", "no-left");
             }
         }
-
-        // Remove walls based on direction
         for (let y = 0; y < mazeHeight; y++) {
             for (let x = 0; x < mazeWidth; x++) {
                 const cell = grid[y][x];
