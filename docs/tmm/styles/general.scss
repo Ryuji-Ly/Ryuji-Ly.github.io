@@ -160,23 +160,44 @@ body {
                 display: none;
             }
         }
-    }
-    #general-info-main{
-        ul{
-            margin: 25px;
-            list-style: none;
-            border: 1px solid #bbb;
-            border-radius: 15px;
-            width: 50vw;
-            padding: 10px 5px;
-            li{
-                padding: 5px 10px;
-                a{
-                    padding: 0 20px;
-                    color: #fff;
-                    text-decoration: none;
-                    &:hover{
-                        color: #bbb;
+        #creatures-info-main {
+            ul {
+                margin: 25px;
+                list-style: none;
+                border: 1px solid #bbb;
+                border-radius: 15px;
+                width: 50vw;
+                padding: 10px 5px;
+                li {
+                    padding: 5px 10px;
+                    a {
+                        padding: 0 20px;
+                        color: #fff;
+                        text-decoration: none;
+                        &:hover {
+                            color: #bbb;
+                        }
+                    }
+                }
+            }
+        }
+        #general-info-main {
+            ul {
+                margin: 25px;
+                list-style: none;
+                border: 1px solid #bbb;
+                border-radius: 15px;
+                width: 50vw;
+                padding: 10px 5px;
+                li {
+                    padding: 5px 10px;
+                    a {
+                        padding: 0 20px;
+                        color: #fff;
+                        text-decoration: none;
+                        &:hover {
+                            color: #bbb;
+                        }
                     }
                 }
             }
@@ -187,5 +208,47 @@ body {
         background: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(10px);
         margin-top: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 2.2ch;
+    }
+    body main #characters div {
+        width: 40vw;
+    }
+    body main #content {
+        width: 70vw;
+    }
+    body main #box #summary {
+        width: 70vw;
+    }
+    body #general-info-main ul {
+        width: 70vw;
+    }
+    body main #creatures-info-main ul {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 2ch;
+    }
+    body main #characters div {
+        width: 80vw;
+    }
+    body main #content {
+        width: 90vw;
+    }
+    body main #box #summary {
+        width: 90vw;
+    }
+    body #general-info-main ul {
+        width: 90vw;
+    }
+    body main #creatures-info-main ul {
+        width: 90vw;
     }
 }
