@@ -75,4 +75,26 @@ body footer {
     color: #af6bf2;
     text-shadow: 0 0 10px #af6bf2, 0 0 20px #af6bf2, 0 0 30px #af6bf2;
   }
+}
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 2.2ch;
+  }
+  body main #title-screen {
+    height: 80vh;
+  }
+  body main #summary p {
+    margin: auto 30px 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 2ch;
+  }
+  body main #title-screen {
+    height: 60vh;
+  }
+  body main #summary p {
+    margin: auto 20px 20px;
+  }
 }/*# sourceMappingURL=style.css.map */
